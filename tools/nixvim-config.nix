@@ -28,20 +28,30 @@ let
 
     myVimPlugs = map (plugin: { plugin = plugin; }) myVimPlugins;
 in {
-    programs.neovim = {
+    programs.nixvim = {
         enable = true;
-        plugins = myVimPlugs;
+        # plugins = myVimPlugs;
+
+        colorschemes.gruvbox.enable = true;
+        plugins.lightline.enable = true;
+
+        extraPlugins = myVimPlugins;
+
+        options = {
+            number = true;
+            shiftwidth = 2;
+        };
     };
 
-    home.file.".config/nvim/init.lua" = {
-        text = builtins.readFile ./neovim/init.lua;
-    };
+    # home.file.".config/nvim/init.lua" = {
+    #     text = builtins.readFile ./neovim/init.lua;
+    # };
 
-    home.file.".config/nvim/lua/opts.lua" = {
-        text = builtins.readFile ./neovim/opts.lua;
-    };
+    # home.file.".config/nvim/lua/opts.lua" = {
+    #     text = builtins.readFile ./neovim/opts.lua;
+    # };
 
-    home.file.".config/nvim/lua/keys.lua" = {
-        text = builtins.readFile ./neovim/keys.lua;
-    };
+    # home.file.".config/nvim/lua/keys.lua" = {
+    #     text = builtins.readFile ./neovim/keys.lua;
+    # };
 }

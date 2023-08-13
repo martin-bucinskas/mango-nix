@@ -124,25 +124,65 @@ require('nvim-treesitter.configs').setup {
     }
 }
 
-local dap = require('dap')
+--Set completeopt to have a better completion experience
+-- :help completeopt
+-- menuone: popup even when there's only one match
+-- noinsert: Do not insert text until a selection is made
+-- noselect: Do not select, force to select one from the menu
+-- shortness: avoid showing extra messages when using completion
+-- updatetime: set updatetime for CursorHold
+vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+vim.opt.shortmess = vim.opt.shortmess + { c = true}
+vim.api.nvim_set_option('updatetime', 300) 
 
-dap.adapters.lldb = {
-  type = 'executable',
-  command = 'lldb-vscode',  -- Adjust the command if it is not in your PATH
-  name = 'lldb'
-}
+-- Fixed column for diagnostics to appear
+-- Show autodiagnostic popup on cursor hover_range
+-- Goto previous / next diagnostic warning / error 
+-- Show inlay_hints more frequently 
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+let g:termdebugger="rust-gdb"
+]])
 
-dap.configurations.rust = {
-  {
-    type = 'lldb',
-    request = 'launch',
-    name = "Launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    args = {},
-    runInTerminal = false,
-  },
-}
+-- Treesitter folding 
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- /////////////////////////////////////////////////////
+
+-- local dap = require('dap')
+
+-- dap.adapters.lldb = {
+--   type = 'executable',
+--   command = 'lldb-vscode',  -- Adjust the command if it is not in your PATH
+--   name = 'lldb'
+-- }
+
+-- dap.configurations.rust = {
+--   {
+--     type = 'lldb',
+--     request = 'launch',
+--     name = "Launch",
+--     program = function()
+--       vim.fn.jobstart('cargo build')
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+--     end,
+--     cwd = '${workspaceFolder}',
+--     stopOnEntry = false,
+--     args = {},
+--     runInTerminal = false,
+--   },
+-- }
+
+-- local mapk = function(key, cmd)
+--     vim.api.nvim_set_keymap('n', '<Leader>z' .. key, cmd, {noremap = true, silent = true})
+-- end
+
+-- mapk('b', ":lua require'dap'.toggle_breakpoint()<cr>")
+-- mapk('z', ":lua require'dap'.continue()<cr>")
+-- mapk('s', ":lua require'dap'.step_over()<cr>")
+-- mapk('i', ":lua require'dap'.step_into()<cr>")
+-- mapk('o', ":lua require'dap'.step_out()<cr>")
+-- mapk('r', ":lua require'dap'.repl.toggle()<cr>")
+  

@@ -4,6 +4,7 @@
         cargo
         rustfmt
         rust-analyzer
-        llvmPackages_latest.lldb
+        llvmPackages_14.lldb
+        gdb
     ];
 }

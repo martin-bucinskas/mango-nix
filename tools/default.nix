@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
     imports = [
-        ./neovim-config.nix
+        ./nixvim-config.nix
         ./home-manager.nix
         ./git.nix
         ./bash.nix
