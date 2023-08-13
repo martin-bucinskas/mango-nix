@@ -1,5 +1,9 @@
 { pkgs ? import <nixpkgs> {}, lib, ... }: 
 let
+    nixvim = import (builtins.fetchGit {
+        url = "https://github.com/nix-community/nixvim";
+    });
+
     buildPlugin = owner: repo: pname: rev: sha256: pkgs.vimUtils.buildVimPluginFrom2Nix {
         pname = pname;
         version = "latest";
@@ -28,6 +32,10 @@ let
 
     myVimPlugs = map (plugin: { plugin = plugin; }) myVimPlugins;
 in {
+    imports = [
+        nixvim.homeManagerModules.nixvim
+    ];
+
     programs.nixvim = {
         enable = true;
         # plugins = myVimPlugs;
