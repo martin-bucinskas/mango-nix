@@ -10,8 +10,8 @@
 
         plugins = with pkgs.vimPlugins; [
             vim-airline
-            williamboman/mason.nvim
-            williamboman/mason-lspconfig.nvim
+            "williamboman/mason.nvim"
+            "williamboman/mason-lspconfig.nvim"
         ];
     };
 }
