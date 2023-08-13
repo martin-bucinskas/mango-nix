@@ -1,4 +1,4 @@
-vim.cmd([[:PackerInstall]])
+-- vim.cmd([[:PackerInstall]])
 
 -- Mason Setup
 require("mason").setup({
