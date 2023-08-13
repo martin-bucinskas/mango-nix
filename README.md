@@ -55,4 +55,12 @@ nix-channel --update
 nix run home-manager/master -- init --switch
 ```
 
+### Clone Mango-NIX repository
+
+Clone the mango-nix repository in any way you want
+
+```bash
+git@github.com:martin-bucinskas/mango-nix.git
+```
+
 That's it! You're now ready to take advantage of the Mango-NIX Development Environment. Happy coding! 🎉
