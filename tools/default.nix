@@ -4,6 +4,5 @@
         ./home-manager.nix
         ./git.nix
         ./bash.nix
-        ./aliases.nix
     ];
 }
