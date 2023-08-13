@@ -9,7 +9,7 @@ let
     myVimPlugins = with pkgs; [
         vimPlugins.vim-airline
         vimPlugins.nvim-treesitter.withAllGrammars
-
+        # 0000000000000000000000000000000000000000000000000000 - for sha256
         (buildPlugin "williamboman" "mason.nvim" "mason-nvim" "main" "sha256-HdwobGTecsVsrLpCrAJIE+tWUqFYF98/MxTNIfBIEDQ=")
         (buildPlugin "williamboman" "mason-lspconfig.nvim" "mason-lspconfig-nvim" "main" "sha256-QYN55F+WeUbHBKDddNuAVCBCFGXsZCD84Ugy5LMH+wI=")
         (buildPlugin "neovim" "nvim-lspconfig" "nvim-lspconfig" "master" "sha256-krHh6YI3svFimxv+U0oJZNHv4HguR/ljLLu0kMvPji0=")
@@ -22,6 +22,7 @@ let
         (buildPlugin "hrsh7th" "cmp-buffer" "cmp-buffer" "main" "sha256-dG4U7MtnXThoa/PD+qFtCt76MQ14V1wX8GMYcvxEnbM=")
         (buildPlugin "hrsh7th" "vim-vsnip" "vim-vsnip" "master" "sha256-ehPnvGle7YrECn76YlSY/2V7Zeq56JGlmZPlwgz2FdE=")
         (buildPlugin "puremourning" "vimspector" "vimspector" "master" "sha256-ZT+bSs+KcEXeFQCvAd7niMPXNkPd32EgvhkuiESvzlU=")
+        (buildPlugin "mfussenegger" "nvim-dap" "nvim-dap" "master" "sha256-aXEgur2B3kLwioDRnkdtHOThWBplvD9RNcec55cwVPw=")
     ];
 
     myVimPlugs = map (plugin: { plugin = plugin; }) myVimPlugins;

@@ -1,12 +1,11 @@
--- Vimspector
-vim.cmd([[
-nmap <F9> <cmd>call vimspector#Launch()<cr>
-nmap <F5> <cmd>call vimspector#StepOver()<cr>
-nmap <F8> <cmd>call vimspector#Reset()<cr>
-nmap <F11> <cmd>call vimspector#StepOver()<cr>")
-nmap <F12> <cmd>call vimspector#StepOut()<cr>")
-nmap <F10> <cmd>call vimspector#StepInto()<cr>")
-]])
-map('n', "Db", ":call vimspector#ToggleBreakpoint()<cr>")
-map('n', "Dw", ":call vimspector#AddWatch()<cr>")
-map('n', "De", ":call vimspector#Evaluate()<cr>")
+local map = function(key, cmd)
+    vim.api.nvim_set_keymap('n', '<Leader>d' .. key, cmd, {noremap = true, silent = true})
+end
+
+map('b', ":lua require'dap'.toggle_breakpoint()<cr>")
+map('c', ":lua require'dap'.continue()<cr>")
+map('s', ":lua require'dap'.step_over()<cr>")
+map('i', ":lua require'dap'.step_into()<cr>")
+map('o', ":lua require'dap'.step_out()<cr>")
+map('r', ":lua require'dap'.repl.toggle()<cr>")
+  

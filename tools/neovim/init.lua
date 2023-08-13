@@ -123,3 +123,26 @@ require('nvim-treesitter.configs').setup {
         max_file_lines = nil,
     }
 }
+
+local dap = require('dap')
+
+dap.adapters.lldb = {
+  type = 'executable',
+  command = 'lldb-vscode',  -- Adjust the command if it is not in your PATH
+  name = 'lldb'
+}
+
+dap.configurations.rust = {
+  {
+    type = 'lldb',
+    request = 'launch',
+    name = "Launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+    runInTerminal = false,
+  },
+}
