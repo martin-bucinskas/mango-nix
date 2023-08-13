@@ -1,29 +1,28 @@
-{ pkgs ? import <nixpkgs> {}, lib, mason-nvim, mason-lspconfig-nvim, ... }: 
+{ pkgs ? import <nixpkgs> {}, lib, ... }: 
 let
-    # fromGitHub = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
-    #     pname = "${lib.strings.sanitizeDerivationName repo}";
-    #     version = ref;
-    #     src = builtins.fetchGit {
-    #         url = "https://github.com/${repo}.git";
-    #         ref = ref;
-    #     };
-    # };
-
-    myVimPlugins = with pkgs.vimPlugins; [
-        vim-airline
-        (pkgs.vimUtils.buildVimPluginFrom2Nix {
-            src = mason-nvim;
-        })
-        (pkgs.vimUtils.buildVimPluginFrom2Nix {
-            src = mason-lspconfig-nvim;
+    myVimPlugins = with pkgs; [
+        vimPlugins.vim-airline
+        (vimUtils.buildVimPluginFrom2Nix {
+            pname = "packer";
+            version = "latest";
+            src = fetchFromGitHub {
+                owner = "wbthomason";
+                repo = "packer.nvim";
+                rev = "master";
+                sha256 = "sha256-YAhAFiR31aGl2SEsA/itP+KgkLyV58EJEwosdc+No9s=";
+            };
         })
     ];
 
-    myVimPackages = map (plugin: { plugin = plugin; }) myVimPlugins;
+    myVimPlugs = map (plugin: { plugin = plugin; }) myVimPlugins;
 in {
     programs.neovim = {
         enable = true;
-        plugins = myVimPackages;
+        plugins = myVimPlugs;
+    };
+
+    home.file.".config/nvim/lua/plug.lua" = {
+        text = builtins.readFile ./neovim/plug.lua;
     };
 
     home.file.".config/nvim/init.lua" = {

@@ -6,5 +6,7 @@
         exa
         fd
         ripgrep
+        zip
+        unzip
     ];
 }

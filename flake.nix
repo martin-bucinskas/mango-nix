@@ -9,8 +9,6 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs"; 
         };
-        mason-nvim.url = "github:williamboman/mason.nvim";
-        mason-lspconfig-nvim.url = "github:williamboman/mason-lspconfig.nvim";
     };
 
     outputs = {
@@ -18,8 +16,6 @@
         home-manager,
         utils,
         devenv,
-        mason-nvim,
-        mason-lspconfig-nvim,
         ...
     }: let
         user = "martini";

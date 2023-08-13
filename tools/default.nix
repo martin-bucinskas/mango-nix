@@ -1,4 +1,4 @@
-{ config, lib, pkgs, mason-nvim, mason-lspconfig-nvim, ... }: {
+{ config, lib, pkgs, ... }: {
     imports = [
         ./neovim-config.nix
         ./home-manager.nix
