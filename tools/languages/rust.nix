@@ -1,13 +1,10 @@
 { pkgs, ... }: {
     home.packages = with pkgs; [
-        rustup
+        rustc
+        cargo
+        rustfmt
         exa
         fd
         ripgrep
     ];
-
-    programs.rustup = {
-        enable = true;
-        toolchains.stable.components = [ "rust-src" "rustfmt" "clippy" ];
-    };
 }
