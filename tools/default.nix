@@ -4,6 +4,6 @@
         ./home-manager.nix
         ./git.nix
         ./bash.nix
-        ./languages.nix
+        ./languages
     ];
 }
