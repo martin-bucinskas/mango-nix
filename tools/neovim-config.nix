@@ -9,9 +9,9 @@
         enable = true;
 
         plugins = with pkgs.vimPlugins; [
-            "vim-airline"
-            "williamboman/mason.nvim"
-            "williamboman/mason-lspconfig.nvim"
+            vim-airline
+            williamboman/mason.nvim
+            williamboman/mason-lspconfig.nvim
         ];
     };
 }
