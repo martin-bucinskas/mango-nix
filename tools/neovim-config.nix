@@ -14,8 +14,10 @@ in {
     programs.neovim = {
         enable = true;
         
-        packages.myVimPackages = {
-            start = myVimPackages;
+        configure = {
+            packages.myVimPackages = {
+                start = myVimPackages;
+            };
         };
     };
 }
