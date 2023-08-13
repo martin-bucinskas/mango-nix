@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
     home.sessionVariables = {
         BASH_ENV = "${pkgs.bash}/etc/profile.d/custom-aliases.sh";
     };
