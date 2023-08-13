@@ -1,5 +1,3 @@
--- vim.cmd([[:PackerInstall]])
-
 -- Mason Setup
 require("mason").setup({
     ui = {
@@ -11,8 +9,6 @@ require("mason").setup({
     }
 })
 require("mason-lspconfig").setup()
-
-vim.cmd([[:MasonInstall rust-analyzer codelldb]])
 
 require("rust-tools").setup({
     server = {

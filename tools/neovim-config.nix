@@ -8,6 +8,7 @@ let
 
     myVimPlugins = with pkgs; [
         vimPlugins.vim-airline
+        vimPlugins.nvim-treesitter.withAllGrammars
 
         (buildPlugin "williamboman" "mason.nvim" "mason-nvim" "main" "sha256-HdwobGTecsVsrLpCrAJIE+tWUqFYF98/MxTNIfBIEDQ=")
         (buildPlugin "williamboman" "mason-lspconfig.nvim" "mason-lspconfig-nvim" "main" "sha256-QYN55F+WeUbHBKDddNuAVCBCFGXsZCD84Ugy5LMH+wI=")
@@ -20,7 +21,7 @@ let
         (buildPlugin "hrsh7th" "cmp-vsnip" "vsnip" "main" "sha256-2mkN03noOr5vBvRbSb35xZKorSH+8savQNZtgM9+QcM=")
         (buildPlugin "hrsh7th" "cmp-buffer" "cmp-buffer" "main" "sha256-dG4U7MtnXThoa/PD+qFtCt76MQ14V1wX8GMYcvxEnbM=")
         (buildPlugin "hrsh7th" "vim-vsnip" "vim-vsnip" "master" "sha256-ehPnvGle7YrECn76YlSY/2V7Zeq56JGlmZPlwgz2FdE=")
-        (buildPlugin "nvim-treesitter" "nvim-treesitter" "nvim-treesitter" "master" "sha256-8+lF6ZIBRktyB/JHZRdbewkCCX71mmkcUf4fvtjiOJM=")
+        (buildPlugin "puremourning" "vimspector" "vimspector" "master" "sha256-ZT+bSs+KcEXeFQCvAd7niMPXNkPd32EgvhkuiESvzlU=")
     ];
 
     myVimPlugs = map (plugin: { plugin = plugin; }) myVimPlugins;
@@ -36,5 +37,9 @@ in {
 
     home.file.".config/nvim/lua/opts.lua" = {
         text = builtins.readFile ./neovim/opts.lua;
+    };
+
+    home.file.".config/nvim/lua/keys.lua" = {
+        text = builtins.readFile ./neovim/keys.lua;
     };
 }
