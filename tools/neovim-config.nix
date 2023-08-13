@@ -1,10 +1,12 @@
 { pkgs ? import <nixpkgs> {}, lib, ... }: 
 let
-    myVimPackages = with pkgs.vimPlugins; [
+    myVimPlugins = with pkgs.vimPlugins; [
         "vim-airline"
         "williamboman/mason.nvim"
         "williamboman/mason-lspconfig.nvim"
     ];
+
+    myVimPackages = map (plugin: { plugin = plugin; }) myVimPlugins;
 in {
     programs.neovim = {
         enable = true;
