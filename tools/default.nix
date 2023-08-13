@@ -6,4 +6,15 @@
         ./bash.nix
         ./languages
     ];
+
+    home.packages = with pkgs; [
+        gcc
+        gnumake
+        binutils
+        zip
+        unzip
+        exa
+        fd
+        ripgrep
+    ];
 }

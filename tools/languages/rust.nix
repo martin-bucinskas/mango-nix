@@ -3,10 +3,5 @@
         rustc
         cargo
         rustfmt
-        exa
-        fd
-        ripgrep
-        zip
-        unzip
     ];
 }

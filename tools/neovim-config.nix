@@ -17,9 +17,10 @@ let
         (buildPlugin "hrsh7th" "cmp-nvim-lsp" "cmp-nvim-lsp" "main" "sha256-mU0soCz79erJXMMqD/FyrJZ0mu2n6fE0deymPzQlxts=")
         (buildPlugin "hrsh7th" "cmp-nvim-lua" "cmp-nvim-lua" "main" "sha256-6eXOK1mVK06TN1akhN42Bo4wQpeen3rk3b/m7iVmGKM=")
         (buildPlugin "hrsh7th" "cmp-nvim-lsp-signature-help" "cmp-nvim-lsp-signature-help" "main" "sha256-yDxYvjTIeXIKYR3tg+bf+okXKr5JYc/I9obP+6uKey4=")
-        (buildPlugin "hrsh7th" "cmp-vsnip" "cmp-vsnip" "main" "sha256-2mkN03noOr5vBvRbSb35xZKorSH+8savQNZtgM9+QcM=")
+        (buildPlugin "hrsh7th" "cmp-vsnip" "vsnip" "main" "sha256-2mkN03noOr5vBvRbSb35xZKorSH+8savQNZtgM9+QcM=")
         (buildPlugin "hrsh7th" "cmp-buffer" "cmp-buffer" "main" "sha256-dG4U7MtnXThoa/PD+qFtCt76MQ14V1wX8GMYcvxEnbM=")
         (buildPlugin "hrsh7th" "vim-vsnip" "vim-vsnip" "master" "sha256-ehPnvGle7YrECn76YlSY/2V7Zeq56JGlmZPlwgz2FdE=")
+        (buildPlugin "nvim-treesitter" "nvim-treesitter" "nvim-treesitter" "master" "sha256-8+lF6ZIBRktyB/JHZRdbewkCCX71mmkcUf4fvtjiOJM=")
     ];
 
     myVimPlugs = map (plugin: { plugin = plugin; }) myVimPlugins;
