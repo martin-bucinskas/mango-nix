@@ -6,11 +6,11 @@ Follow the instructions below to get started. 🚀
 
 ## 📝 Table of Contents
 
-- [Update Environment](#update-environment)
-- [Setup](#setup)
-  - [Install Nix](#install-nix)
-  - [Allow nix-command and flakes](#allow-nix-command-and-flakes)
-  - [Add home-manager](#add-home-manager)
+- [Update Environment](#-update-environment)
+- [Setup](#-setup)
+  - [Install Nix](#-install-nix)
+  - [Allow nix-command and flakes](#-allow-nix-command-and-flakes)
+  - [Add home-manager](#-add-home-manager)
 
 ## 🔄 Update Environment
 
