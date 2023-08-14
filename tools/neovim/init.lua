@@ -205,7 +205,7 @@ require("trouble").setup({
     multiline = true,
     indent_lines = true,
     -- auto_open = true,
-    auto_close = true,
+    auto_close = false,
     signs = {
         error = "❌",
         warning = "⚠️",

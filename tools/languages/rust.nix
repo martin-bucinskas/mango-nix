@@ -4,7 +4,7 @@
         rustup
         llvmPackages_16.stdenv
         llvmPackages_16.libllvm
-        ctags
+        universal-ctags
         gdb
     ];
 }
