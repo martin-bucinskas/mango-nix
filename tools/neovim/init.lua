@@ -1,3 +1,24 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.loader.enable()
+
+vim.opt.number = true
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.smartindent = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.showmatch = true
+vim.opt.cursorline = true
+-- vim.opt.cursorcolumn = true
+vim.opt.autowrite = true
+
+require('onedark').setup {
+    style = 'darker'
+}
+require('onedark').load()
+
 -- Mason Setup
 require("mason").setup({
     ui = {
@@ -160,7 +181,114 @@ let g:termdebugger="rust-gdb"
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
-vim.lsp.set_log_level("debug")
+local map = function(mode, key, cmd)
+    vim.api.nvim_set_keymap(mode, '<leader>' .. key, cmd, {noremap = true, silent = true})
+end
+
+-- FloaTerm configuration
+map('n', 'ft', ':FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2 <CR> ')
+map('n', 't', ':FloatermToggle myfloat<CR>')
+map('t', '<Esc>', '<C-\\><C-n>:q<CR>')
+
+
+-- Telescope
+local telescope_builtin = require('telescope.builtin')
+vim.keymap.set('n', 'ff', telescope_builtin.find_files, {})
+vim.keymap.set('n', 'fg', telescope_builtin.live_grep, {})
+vim.keymap.set('n', 'fb', telescope_builtin.buffers, {})
+vim.keymap.set('n', 'fh', telescope_builtin.help_tags, {})
+
+-- Trouble
+require("trouble").setup({
+    position = "bottom",
+    icons = true,
+    multiline = true,
+    indent_lines = true,
+    -- auto_open = true,
+    auto_close = true,
+    signs = {
+        error = "❌",
+        warning = "⚠️",
+        hint = "🔎",
+        information = "❔",
+        other = "❓",
+    },
+})
+
+-- nvim-tree
+-- vim.opt.termguicolors = true -- doesn't play well with color schemes
+
+require("nvim-tree").setup({
+    sort_by = "case_sensitive",
+    view = {
+        width = 30,
+    },
+    renderer = {
+        group_empty = true,
+    },
+    filters = {
+        dotfiles = true,
+    },
+})
+
+require'nvim-web-devicons'.setup {
+    -- your personnal icons can go here (to override)
+    -- you can specify color or cterm_color instead of specifying both of them
+    -- DevIcon will be appended to `name`
+    override = {
+     zsh = {
+       icon = "",
+       color = "#428850",
+       cterm_color = "65",
+       name = "Zsh"
+     }
+    };
+    -- globally enable different highlight colors per icon (default to true)
+    -- if set to false all icons will have the default icon's color
+    color_icons = true;
+    -- globally enable default icons (default to false)
+    -- will get overriden by `get_icons` option
+    default = true;
+    -- globally enable "strict" selection of icons - icon will be looked up in
+    -- different tables, first by filename, and if not found by extension; this
+    -- prevents cases when file doesn't have any extension but still gets some icon
+    -- because its name happened to match some extension (default to false)
+    strict = true;
+    -- same as `override` but specifically for overrides by filename
+    -- takes effect when `strict` is true
+    override_by_filename = {
+     [".gitignore"] = {
+       icon = "",
+       color = "#f1502f",
+       name = "Gitignore"
+     }
+    };
+    -- same as `override` but specifically for overrides by extension
+    -- takes effect when `strict` is true
+    override_by_extension = {
+     ["log"] = {
+       icon = "",
+       color = "#81e043",
+       name = "Log"
+     }
+    };
+}
+
+-- to map: 
+--  :NvimTreeToggle
+--  :NvimTreeFocus
+map('n', 'mn', ':NvimTreeToggle<CR>')
+map('n', 'mt', ':TagbarToggle<CR>')
+
+-- Rust Toggle All
+-- local function toggleRustDev()
+--     -- vim.cmd('NvimTreeToggle')
+--     vim.cmd('TagbarToggle')
+--     vim.cmd('TroubleToggle')
+-- end
+map('n', 'mp', ':TroubleToggle<CR>|:TagbarToggle<CR>')
+
+-- vim.lsp.set_log_level("debug")
 
 -- /////////////////////////////////////////////////////
 
