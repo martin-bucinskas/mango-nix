@@ -121,5 +121,7 @@ ssh-add ~/.ssh/id_ed25519
 
 export GPG_TTY=$(tty)
 
+export PATH="$PATH:${CARGO_HOME:-~/.cargo}/bin:${RUSTUP_HOME:-~/.rustup}/toolchains/$RUSTC_VERSION-x86_64-unknown-linux-gnu/bin/"
+
 # custom aliases
 alias vim='nvim'

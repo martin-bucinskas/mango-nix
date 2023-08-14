@@ -8,7 +8,18 @@ require("mason").setup({
         },
     }
 })
-require("mason-lspconfig").setup()
+
+local lspconfig = require('lspconfig')
+lspconfig.rust_analyzer.setup {
+    settings = {
+        ['rust-analyzer'] = {},
+    },
+}
+
+require("mason-lspconfig").setup({
+    ensure_installed = { "rust_analyzer" },
+    automatic_installation = true,
+})
 
 require("rust-tools").setup({
     server = {
@@ -149,7 +160,12 @@ let g:termdebugger="rust-gdb"
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
+vim.lsp.set_log_level("debug")
+
 -- /////////////////////////////////////////////////////
+
+-- CodeLLDB dir i found... possible??
+-- /home/martini/.local/share/nvim/mason/bin/codelldb
 
 -- local dap = require('dap')
 

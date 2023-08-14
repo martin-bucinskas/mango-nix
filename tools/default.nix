@@ -8,13 +8,14 @@
     ];
 
     home.packages = with pkgs; [
-        gcc
+        # gcc
         gnumake
-        binutils
+        # binutils
         zip
         unzip
         exa
         fd
         ripgrep
+        tree-sitter
     ];
 }
